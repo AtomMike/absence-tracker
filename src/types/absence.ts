@@ -1,4 +1,4 @@
-export type AbsenceType = 'SICKNESS' |  'ANNUAL_LEAVE' | 'FAMILY';
+export type AbsenceType = 'SICKNESS' | 'MEDICAL' | 'ANNUAL_LEAVE' | 'FAMILY';
 
 export interface Employee {
     firstName: string,
