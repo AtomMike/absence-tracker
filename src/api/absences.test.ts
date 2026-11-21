@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Absence } from "../types/absence";
 import { fetchAbsences, fetchConflict } from './absences';
+import { API_URL, PATH_ABSENCES, PATH_CONFLICT } from "./constants";
 
 const mockAbsence: Absence = {
     id: 0,
@@ -30,7 +31,7 @@ describe('fetchAbsences', () => {
 
         const result = await fetchAbsences()
         expect(fetchMock).toHaveBeenCalledWith(
-            'https://front-end-kata.brighthr.workers.dev/api/absences'
+            `${API_URL}${PATH_ABSENCES}`
         )
         expect(result).toEqual([mockAbsence])
     })
@@ -53,7 +54,7 @@ describe('fetchConflict', () => {
 
         const result = await fetchConflict(3)
         expect(fetchMock).toHaveBeenCalledWith(
-            'https://front-end-kata.brighthr.workers.dev/api/conflict/3'
+            `${API_URL}${PATH_CONFLICT}3`
         )
         expect(result).toEqual({ conflicts: true})
     })
