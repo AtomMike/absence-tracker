@@ -1,3 +1,3 @@
-export interface Conflict {
+export interface ConflictResponse {
     conflicts: boolean,
 }
