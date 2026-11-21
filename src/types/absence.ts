@@ -1,16 +1,16 @@
-export type AbsenceType = 'FAMILY';
+export type AbsenceType = 'SICKNESS' |  'ANNUAL_LEAVE' | 'FAMILY';
 
 export interface Employee {
-    "firstName": string,
-    "lastName": string,
-    "id": string
+    firstName: string,
+    lastName: string,
+    id: string
 };
 
 export interface Absence {
-    "id": number,
-    "startDate": string,
-    "days": number,
-    "absenceType": AbsenceType | string,
-    "employee": Employee,
-    "approved": boolean,
+    id: number,
+    startDate: string,
+    days: number,
+    absenceType: AbsenceType | string,
+    employee: Employee,
+    approve: boolean,
 };
