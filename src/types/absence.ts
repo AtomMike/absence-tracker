@@ -12,5 +12,5 @@ export interface Absence {
     days: number,
     absenceType: AbsenceType | string,
     employee: Employee,
-    approve: boolean,
+    approved: boolean,
 };
