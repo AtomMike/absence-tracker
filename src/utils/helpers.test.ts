@@ -56,4 +56,17 @@ describe('sortAbsences', () => {
         const result = sortAbsences([zane, albert], 'name', 'asc');
         expect(result.map((a) => a.id)).toEqual([2, 1]);
     })
+
+    it('sorts by name descending', () => {
+        const zane = mockSortableAbsence({
+            id: 1,
+            employee: { id: 'a', firstName: 'Zane', lastName: 'Young'},
+        });
+        const albert = mockSortableAbsence({
+            id: 2,
+            employee: { id: 'b', firstName: 'Albert', lastName: 'Adams'},
+        });
+        const result = sortAbsences([zane, albert], 'name', 'desc');
+        expect(result.map((a) => a.id)).toEqual([1, 2]);
+    })
 })
