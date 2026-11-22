@@ -50,10 +50,10 @@ describe('sortAbsences', () => {
             employee: { id: '0', firstName: 'Albert', lastName: 'Adams'},
         });
         const zane = mockSortableAbsence({
-            id: 1,
+            id: 2,
             employee: { id: '0', firstName: 'Zane', lastName: 'Young'},
         });
         const result = sortAbsences([albert, zane], 'name', 'asc');
-        expect(result.map((a) => a.id)).toEqual([2, 1]);
+        expect(result.map((a) => a.id)).toEqual([1, 2]);
     })
 })
