@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { formatDate, getEndDate } from './helpers';
+import { formatDate, getEndDate, sortAbsences } from './helpers';
+import type { Absence } from "../types/absence";
 
 describe('formatDate', () => {
     it('returns fomatted ISO date string', () => {
@@ -29,5 +30,30 @@ describe('getEndDate', () => {
         expect(formatDate(getEndDate('2026-12-30T12:00:00.000Z', 2))).toBe(
         '1 Jan 2027',
       )
+    })
+})
+
+function mockSortableAbsence(overrides: Partial<Absence> & Pick<Absence, 'id' | 'employee'>): Absence {
+    return {
+        startDate: '2022-01-01T00:00:00.000Z',
+        days: 1,
+        absenceType: 'SICKNESS',
+        approved: true,
+        ...overrides,
+    }
+}
+
+describe('sortAbsences', () => {
+    it('sorts by name ascending', () => {
+        const albert = mockSortableAbsence({
+            id: 1,
+            employee: { id: '0', firstName: 'Albert', lastName: 'Adams'},
+        });
+        const zane = mockSortableAbsence({
+            id: 1,
+            employee: { id: '0', firstName: 'Zane', lastName: 'Young'},
+        });
+        const result = sortAbsences([albert, zane], 'name', 'asc');
+        expect(result.map((a) => a.id)).toEqual([2, 1]);
     })
 })
