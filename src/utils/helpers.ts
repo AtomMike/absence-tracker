@@ -16,6 +16,20 @@ export function getEndDate(isoStart: string, days: number): string {
     return endDate.toISOString();
 }
 
-export function sortAbsences(absences: Absence[], sortType: string, direction: string) {
-    return [...absences];
+export type SortDirection = 'asc' | 'desc';
+
+export function sortAbsences(absences: Absence[], sortType: string, direction: SortDirection): Absence[] {
+    const sorted = [...absences];
+    
+    sorted.sort((a, b) => {
+        if (sortType === 'name') {
+            const nameA = `${a.employee.firstName} ${a.employee.lastName}`;
+            const nameB = `${b.employee.firstName} ${b.employee.lastName}`;
+            const result = nameA.localeCompare(nameB);
+            return direction === 'asc' ? result : -result;
+        }
+        return 0;
+    });
+
+    return sorted;
 }

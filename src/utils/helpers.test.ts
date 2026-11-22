@@ -53,7 +53,7 @@ describe('sortAbsences', () => {
             id: 2,
             employee: { id: 'b', firstName: 'Albert', lastName: 'Adams'},
         });
-        const result = sortAbsences([albert, zane], 'name', 'asc');
+        const result = sortAbsences([zane, albert], 'name', 'asc');
         expect(result.map((a) => a.id)).toEqual([2, 1]);
     })
 })
