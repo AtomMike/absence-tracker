@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { formatDate, getEndDate, sortAbsences, filterAbsencesByEmployee } from './helpers';
 import type { Absence } from "../types/absence";
 
