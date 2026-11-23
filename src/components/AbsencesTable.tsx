@@ -3,9 +3,12 @@ import { formatDate, getEndDate, sortAbsences } from "../utils/helpers";
 import type { Absence } from "../types/absence";
 import type { SortDirection, SortType } from "../utils/helpers";
 
-type Props = { absences: Absence[] };
+type Props = { 
+    absences: Absence[], 
+    conflictsById: Record<number, boolean>
+};
 
-export function AbsencesTable({absences}: Props) {
+export function AbsencesTable({absences, conflictsById}: Props) {
     const [sortType, setSortType] = useState<SortType>('date');
     const [direction, setDirection] = useState<SortDirection>('asc');
 
@@ -36,15 +39,19 @@ export function AbsencesTable({absences}: Props) {
                 </tr>
             </thead>
             <tbody>
-                {sorted.map((a) => (
-                    <tr key={a.id} className="border-b border-gray-200 hover:bg-gray-50">
-                        <td className="px-3 py-2">{formatDate(a.startDate)}</td>
-                        <td className="px-3 py-2">{formatDate(getEndDate(a.startDate, a.days))}</td>
-                        <td className="px-3 py-2">{a.employee.firstName} {a.employee.lastName}</td>
-                        <td className="px-3 py-2">{a.approved ? 'Approved' : 'Pending'}</td>
-                        <td className="px-3 py-2">{a.absenceType}</td>
-                    </tr>
-                ))}
+                {sorted.map((a) => {
+                    const hasConflict = conflictsById[a.id] === true;
+
+                    return(
+                        <tr key={a.id} className="border-b border-gray-200 hover:bg-gray-50">
+                            <td className="px-3 py-2">{formatDate(a.startDate)}</td>
+                            <td className="px-3 py-2">{formatDate(getEndDate(a.startDate, a.days))}</td>
+                            <td className="px-3 py-2">{a.employee.firstName} {a.employee.lastName}</td>
+                            <td className="px-3 py-2">{a.approved ? 'Approved' : 'Pending'}</td>
+                            <td className="px-3 py-2">{a.absenceType}</td>
+                        </tr>
+                    )
+                })}
             </tbody>
         </table>
     )
