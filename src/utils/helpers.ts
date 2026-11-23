@@ -44,3 +44,7 @@ export function sortAbsences(absences: Absence[], sortType: SortType, direction:
 
     return sorted;
 }
+
+export function filterAbsencesByEmployee(absences: Absence[], employeeId: string | null): Absence[] {
+    
+}

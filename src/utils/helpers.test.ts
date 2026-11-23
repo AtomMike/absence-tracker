@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { formatDate, getEndDate, sortAbsences } from './helpers';
+import { formatDate, getEndDate, sortAbsences, filterAbsencesByEmployee } from './helpers';
 import type { Absence } from "../types/absence";
 
 describe('formatDate', () => {
@@ -101,3 +101,41 @@ describe('sortAbsences', () => {
       expect(result.map((a) => a.id)).toEqual([2, 1])
     })
 })
+
+describe('filterAbsencesByEmployee', () => {
+    const rahaf = mockSortableAbsence({
+      id: 1,
+      employee: {
+        id: 'emp-rahaf',
+        firstName: 'Rahaf',
+        lastName: 'Deckard',
+      },
+    })
+    const otherRahafAbsence = mockSortableAbsence({
+      id: 2,
+      employee: {
+        id: 'emp-rahaf',
+        firstName: 'Rahaf',
+        lastName: 'Deckard',
+      },
+    })
+    const bob = mockSortableAbsence({
+      id: 3,
+      employee: {
+        id: 'emp-bob',
+        firstName: 'Bob',
+        lastName: 'Smith',
+      },
+    })
+    const all = [rahaf, otherRahafAbsence, bob]
+    it('returns all absences when employeeId is null', () => {
+      expect(filterAbsencesByEmployee(all, null).map((a) => a.id)).toEqual([
+        1, 2, 3,
+      ])
+    })
+    it('returns only absences for the selected employee id', () => {
+      expect(
+        filterAbsencesByEmployee(all, 'emp-rahaf').map((a) => a.id),
+      ).toEqual([1, 2])
+    })
+  })
