@@ -47,7 +47,14 @@ export function AbsencesTable({absences, conflictsById}: Props) {
                             <td className="px-3 py-2">{formatDate(a.startDate)}</td>
                             <td className="px-3 py-2">{formatDate(getEndDate(a.startDate, a.days))}</td>
                             <td className="px-3 py-2">{a.employee.firstName} {a.employee.lastName}</td>
-                            <td className="px-3 py-2">{a.approved ? 'Approved' : 'Pending'}</td>
+                            <td className="px-3 py-2">
+                                <span>{a.approved ? 'Approved' : 'Pending'}</span>
+                                {hasConflict && (
+                                    <span className="ml-2 rounded bg-red-100 px-2 py-0.5 text-xs text-red-800">
+                                        Conflict
+                                    </span>
+                                )}
+                            </td>
                             <td className="px-3 py-2">{a.absenceType}</td>
                         </tr>
                     )
