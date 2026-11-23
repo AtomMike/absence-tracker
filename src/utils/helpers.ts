@@ -17,18 +17,26 @@ export function getEndDate(isoStart: string, days: number): string {
 }
 
 export type SortDirection = 'asc' | 'desc';
+export type SortType = 'name' | 'date';
 
-export function sortAbsences(absences: Absence[], sortType: string, direction: SortDirection): Absence[] {
+export function sortAbsences(absences: Absence[], sortType: SortType, direction: SortDirection): Absence[] {
     const sorted = [...absences];
     
     sorted.sort((a, b) => {
+        let rowA: string;
+        let rowB: string;
+
         if (sortType === 'name') {
-            const nameA = `${a.employee.firstName} ${a.employee.lastName}`;
-            const nameB = `${b.employee.firstName} ${b.employee.lastName}`;
-            const result = nameA.localeCompare(nameB);
-            return direction === 'asc' ? result : -result;
+            rowA = `${a.employee.firstName} ${a.employee.lastName}`;
+            rowB = `${b.employee.firstName} ${b.employee.lastName}`;
+        } else if (sortType === 'date') {
+            rowA = a.startDate;
+            rowB = b.startDate;
+        } else {
+            return 0;
         }
-        return 0;
+        const result = rowA.localeCompare(rowB);
+        return direction === 'asc' ? result : -result;
     });
 
     return sorted;
