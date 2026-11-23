@@ -85,4 +85,19 @@ describe('sortAbsences', () => {
         const result = sortAbsences([later, earlier], 'date', 'asc');
         expect(result.map((a) => a.id)).toEqual([2, 1]);
     })
+
+    it('sorts by absence type ascending', () => {
+      const sickness = mockSortableAbsence({
+        id: 1,
+        absenceType: 'SICKNESS',
+        employee: { id: 'a', firstName: 'A', lastName: 'A' },
+      })
+      const annual = mockSortableAbsence({
+        id: 2,
+        absenceType: 'ANNUAL_LEAVE',
+        employee: { id: 'b', firstName: 'B', lastName: 'B' },
+      })
+      const result = sortAbsences([sickness, annual], 'absenceType', 'asc')
+      expect(result.map((a) => a.id)).toEqual([2, 1])
+    })
 })

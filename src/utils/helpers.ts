@@ -1,4 +1,4 @@
-import type { Absence } from "../types/absence";
+import type { Absence, AbsenceType } from "../types/absence";
 
 export function formatDate(iso: string): string {
     return new Date(iso).toLocaleDateString('en-GB', {
@@ -17,7 +17,7 @@ export function getEndDate(isoStart: string, days: number): string {
 }
 
 export type SortDirection = 'asc' | 'desc';
-export type SortType = 'name' | 'date';
+export type SortType = 'name' | 'date' | 'absenceType';
 
 export function sortAbsences(absences: Absence[], sortType: SortType, direction: SortDirection): Absence[] {
     const sorted = [...absences];
@@ -32,6 +32,9 @@ export function sortAbsences(absences: Absence[], sortType: SortType, direction:
         } else if (sortType === 'date') {
             rowA = a.startDate;
             rowB = b.startDate;
+        } else if (sortType === 'absenceType') {
+            rowA = String(a.absenceType);
+            rowB = String(b.absenceType);
         } else {
             return 0;
         }
