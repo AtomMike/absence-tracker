@@ -33,20 +33,20 @@ export function AbsencesTable({absences, conflictsById}: Props) {
         <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
             {selectedEmployeeId && filtered[0] && (
                 <div className="flex items-center justify-between gap-3 border-b border-gray-200 bg-gray-50 px-4 py-3">
-                <p className="text-sm text-gray-700">
-                    Showing absences for{' '}
-                    <span className="font-semibold text-gray-900">
-                    {filtered[0].employee.firstName} {filtered[0].employee.lastName}
-                    </span>
-                    <span className="text-gray-500"> ({filtered.length})</span>
-                </p>
-                <button
-                    type="button"
-                    className="rounded border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
-                    onClick={() => setSelectedEmployeeId(null)}
-                >
-                    Show all
-                </button>
+                    <p className="text-sm text-gray-700">
+                        Showing absences for{' '}
+                        <span className="font-semibold text-gray-900">
+                        {filtered[0].employee.firstName} {filtered[0].employee.lastName}
+                        </span>
+                        <span className="text-gray-500"> ({filtered.length})</span>
+                    </p>
+                    <button
+                        type="button"
+                        className="rounded border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                        onClick={() => setSelectedEmployeeId(null)}
+                    >
+                        Show all
+                    </button>
                 </div>
             )}
             <table className="w-full border-collapse text-left text-sm text-gray-800">
