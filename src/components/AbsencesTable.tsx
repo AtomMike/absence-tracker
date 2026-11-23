@@ -28,11 +28,11 @@ export function AbsencesTable({absences}: Props) {
         <table className="w-full border-collapse text-left text-sm">
             <thead>
                 <tr className="border-b border-gray-300 bg-gray-100">
-                    <th className="px-3 py-2 font-semibold" onClick={() => handleSort('date')}>Start</th>
+                    <th className="px-3 py-2 font-semibold"><button className="cursor-pointer" onClick={() => handleSort('date')}>Start</button></th>
                     <th className="px-3 py-2 font-semibold">End</th>
-                    <th className="px-3 py-2 font-semibold" onClick={() => handleSort('name')}>Employee</th>
+                    <th className="px-3 py-2 font-semibold"><button className="cursor-pointer" onClick={() => handleSort('name')}>Employee</button></th>
                     <th className="px-3 py-2 font-semibold">Status</th>
-                    <th className="px-3 py-2 font-semibold" onClick={() => handleSort('absenceType')}>Type</th>
+                    <th className="px-3 py-2 font-semibold"><button className="cursor-pointer" onClick={() => handleSort('absenceType')}>Type</button></th>
                 </tr>
             </thead>
             <tbody>
