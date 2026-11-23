@@ -4,6 +4,7 @@ This is a small React + TypeScript SPA that lists BrightHR absences, along with 
 - Table: start, end, employee, approval status, type
 - Sort by start date, employee name, absence type (click headers; click again to reverse)
 - Conflict badge via `/api/conflict/:id`
+- Click an employee's name to show their absences
 ## Run
 prerequisites: Node 20+
 ```bash
@@ -17,11 +18,11 @@ npm test
 (or `npm test -- --run` for a single CI-style pass)
 
 ## Given more time:
-- Show an employee’s absences when clicking their name
 - Component tests (RTL) for table sorting + conflict badge
 - Conflict fetching: batching, better loading/error UI
 - Accessibility (aria-sort, etc.)
-- Improve the general styling, perhaps adding some transition animation
+- Improve the general styling and layout, perhaps adding some transition animation
+- Wider test coverage
 ## API
 - `GET https://front-end-kata.brighthr.workers.dev/api/absences`
 - `GET https://front-end-kata.brighthr.workers.dev/api/conflict/{id}`
